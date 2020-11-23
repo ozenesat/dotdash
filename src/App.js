@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import React, { useState, useEffect, Fragment } from 'react';
+import { Route, withRouter } from 'react-router-dom';
 import './App.css';
+import NavBar from './NavBar'
+import BookReviews from './BookReviews';
+import NewsLetter from './NewsLetter';
+import ButtonsPopups from './ButtonsPopups';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <NavBar/>
+      <main className="container-fluid" style={{ padding: '0px' }}>
+        <Route exact path='/bookreviews' render={() => (
+          <BookReviews />
+        )} />
+        <Route exact path='/newsletter' render={() => (
+          <NewsLetter/>
+        )} />
+        <Route path='/buttonspopups' render={() => (
+          <ButtonsPopups/>
+        )} />
+      </main>
+    </Fragment>
   );
 }
 
-export default App;
+export default withRouter(App);
